@@ -1,0 +1,22 @@
+.lista-usuarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card-usuario {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.card-usuario h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.card-usuario p {
+  margin: 0;
+  color: #4b5563;
+}

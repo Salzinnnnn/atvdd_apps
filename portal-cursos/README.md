@@ -1,9 +1,10 @@
-# EduTech — Portal de Cursos
+# Salzintech — Portal de Cursos do Salzin
 
 Aplicação React criada com Vite para a atividade prática avaliativa da disciplina
-Aplicativos Web (IFTO). Possui duas páginas — **Início** e **Cadastro** — com
-navegação sem recarregamento via React Router e um formulário com validações
-no navegador (sem API nem banco de dados).
+Aplicativos Web (IFTO). Possui três páginas — **Início**, **Cadastro** e
+**Usuários** — com navegação sem recarregamento via React Router, um formulário
+com validações no navegador e uma listagem que consome a API pública do
+JSONPlaceholder.
 
 ## Como executar
 
@@ -27,6 +28,18 @@ selecionado) e retorna um objeto de erros; o cadastro simulado só é confirmado
 quando esse objeto está vazio (`Object.keys(novosErros).length === 0`), com
 mensagens exibidas abaixo de cada campo e acessíveis por `aria-describedby`.
 
+## Página Usuários (consumo de API)
+
+A página `src/pages/Usuarios.jsx` busca os dados de
+`https://jsonplaceholder.typicode.com/users` dentro de um `useEffect`, usando um
+`AbortController`: uma requisição em andamento é cancelada na limpeza do efeito
+(`return () => controller.abort()`), evitando atualizações de estado em
+componente desmontado. O componente trata os três estados — carregamento
+("Carregando usuários..."), erro (`role="alert"` com "Não foi possível carregar
+os usuários.") e lista vazia ("Nenhum usuário.") — e renderiza os dados com
+`map()` em cards estilizados por `Usuarios.css` (grid responsivo). A rota
+`/usuarios` está registrada em `App.jsx`, com link no menu.
+
 ## Evidências dos testes
 
 Capturas de tela em `screenshots/`:
@@ -34,6 +47,7 @@ Capturas de tela em `screenshots/`:
 2. Página Cadastro
 3. Erros de validação (campos vazios / nome e e-mail inválidos)
 4. Mensagem de cadastro simulado com sucesso
+5. Página Usuários com dados da API
+6. Erro simulado da API
+7. Lista vazia simulada
 
-> Obs.: esta validação é didática e acontece apenas no navegador. Os dados
-> ficam somente no estado do React e desaparecem ao atualizar a página.
